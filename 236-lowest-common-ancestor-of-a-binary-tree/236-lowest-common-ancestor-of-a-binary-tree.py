@@ -16,16 +16,16 @@ class Solution:
             return root
         
         
-        a = self.lowestCommonAncestor(root.left, p, q)
-        b = self.lowestCommonAncestor(root.right, p, q)
+        leftans = self.lowestCommonAncestor(root.left, p, q)
+        rightans = self.lowestCommonAncestor(root.right, p, q)
         
-        if a and not b:
-            return a
+        if leftans and not rightans:
+            return leftans
         
-        if not a and b:
-            return b
+        if not leftans and rightans:
+            return rightans
         
-        if a and b:
+        if leftans and rightans:
             return root
         
         
