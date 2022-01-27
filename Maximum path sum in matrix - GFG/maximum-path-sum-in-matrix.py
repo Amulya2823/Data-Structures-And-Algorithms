@@ -2,40 +2,40 @@
 
 class Solution:
     def maximumPath(self, N, Matrix):
-        answer = 0
-        memo = {}
+       
+       answer = 0
+       memo = {}
+       
+       for currentColumn in range(0,N):
+           tempans = self.maximumsum(0,currentColumn,Matrix,N,memo)
+           answer = max(answer,tempans)
+           
+       return answer 
         
-        for currentcolumn in range(0,N):
-            tempans = self.maximumpathsum(0,currentcolumn,Matrix,N,memo)
-            answer = max(answer,tempans)
-            
-        return answer
+    def maximumsum(self,currentRow,currentColumn,Matrix,N,memo):
         
-    def maximumpathsum(self,currentrow,currentcolumn,Matrix,N,memo) :
-        
-        if currentrow < 0 or currentrow >= N or currentcolumn < 0 or currentcolumn >= N:
+        if currentRow >= N or currentRow < 0 or currentColumn >= N or currentColumn <0 :
             return 0
-        
-        if currentrow == N-1 :
-            return Matrix[currentrow][currentcolumn]
             
-        currentkey = (currentrow,currentcolumn)
+        currentkey = (currentRow,currentColumn)  
         
         if currentkey in memo:
             return memo[currentkey]
             
-        downmove = Matrix[currentrow][currentcolumn] + self.maximumpathsum(currentrow + 1,currentcolumn,Matrix,N,memo)
-        diagonallyleft = Matrix[currentrow][currentcolumn] + self.maximumpathsum(currentrow + 1,currentcolumn - 1,Matrix,N,memo)
-        diagonallyright = Matrix[currentrow][currentcolumn] + self.maximumpathsum(currentrow + 1,currentcolumn + 1,Matrix,N,memo)
+        if currentRow == N-1 :
+            return Matrix[currentRow][currentColumn]
+            
+            
+        down = Matrix[currentRow][currentColumn] + self.maximumsum(currentRow+1 , currentColumn,Matrix,N,memo)
+        diagleft = Matrix[currentRow][currentColumn] + self.maximumsum(currentRow+1 , currentColumn-1,Matrix,N,memo)
+        diagright = Matrix[currentRow][currentColumn] + self.maximumsum(currentRow +1, currentColumn +1,Matrix,N,memo)
         
-        memo[currentkey] = max(downmove,diagonallyleft,diagonallyright)
-        return memo[currentkey] 
+        memo[currentkey] = max(down,diagleft,diagright)
+        return memo[currentkey]
         
-       
-      
         
-         
-    
+           
+
 #{ 
 #  Driver Code Starts
 #Initial Template for Python 3
