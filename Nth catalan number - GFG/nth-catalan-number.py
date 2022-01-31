@@ -3,32 +3,28 @@
 class Solution:
     #Function to find the nth catalan number.
     def findCatalan(self,n):
-       
-       
-       return self.nthCatalan(n,{})
-       
-    def nthCatalan(self,n,memo) :
         
+        return self.catalan(n,{}) 
         
-        if n <= 1 :
-            return 1 
+    def catalan(self,n,memo) :
+        
+        if n <= 1:
+            return 1
             
         currentkey = n
         
         if currentkey in memo:
             return memo[currentkey]
             
-        catalanNumbers = 0    
-        for i in range (0,n) :
-            catalanNumbers += self.nthCatalan(i,memo) * self.nthCatalan(n - i - 1,memo)
+        answer = 0    
+        for i in range(0,n) :
             
-        memo[currentkey] = catalanNumbers   
+            answer += self.catalan(i,memo) * self.catalan(n-i-1,memo)
+            
+        memo[currentkey]= answer   
         return memo[currentkey]
             
 
-            
-            
-        
 #{ 
 #  Driver Code Starts
 #Initial Template for Python 3
