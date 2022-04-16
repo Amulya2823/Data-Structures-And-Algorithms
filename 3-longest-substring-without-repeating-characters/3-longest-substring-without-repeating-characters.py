@@ -9,10 +9,9 @@ class Solution:
         for acquire in range (len(s)) :
             currentChar = s[acquire]
             
-            while release < acquire and currentChar in memo :
-                disChar = s[release]
-                del memo[disChar]
-                release += 1
+            if currentChar in memo and memo[currentChar] >= release :
+                release = memo[currentChar] + 1
+           
                 
             memo[currentChar] = acquire
             answer = max(answer , acquire - release + 1)
