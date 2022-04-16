@@ -14,7 +14,7 @@ class Solution:
                 del memo[disChar]
                 release += 1
                 
-            memo[currentChar] = 1
+            memo[currentChar] = acquire
             answer = max(answer , acquire - release + 1)
             
         return answer 
