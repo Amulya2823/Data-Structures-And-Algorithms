@@ -11,15 +11,15 @@ class Solution:
             else:
                 memo[i] += 1
                 
-        for key , value in memo.items():
+        for key , occurance in memo.items():
             
             if len(answer) < k:
-                heapq.heappush(answer , [value , key])
+                heapq.heappush(answer , [occurance , key])
                 
             else:
-                heapq.heappushpop(answer , [value,key])
+                heapq.heappushpop(answer, [occurance , key])
                 
-        return [key for value,key in answer]
+        return [key for occurance ,key in answer]
                               
                         
         
