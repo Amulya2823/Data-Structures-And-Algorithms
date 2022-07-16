@@ -4,27 +4,22 @@ class Solution:
         start = 1
         end = max(piles)
         
+        result = end
+        
         while start <= end:
             mid = start + (end-start)//2
             
-            if self.isPossible(piles , h , mid):
-                end = mid-1
-            else :
-                start = mid+1
-                
-        return start
-    
-    def isPossible(self , piles , hours , k):
-        
-        hoursCount = 0
-        
-        for pile in piles :
-            validHour = pile//k
-            hoursCount += validHour 
+            hours = 0
             
-            if pile % k != 0:
-                hoursCount += 1
+            for pile in piles:
+                hours += math.ceil(pile/mid)
                 
-        return hoursCount <= hours
-         
+            if hours <= h :
+                result = min(result , mid )
+                end = mid-1
+                
+            else:
+                start = mid+1
+        
+        return result
         
