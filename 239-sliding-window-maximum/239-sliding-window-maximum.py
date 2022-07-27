@@ -11,7 +11,7 @@ class Solution:
         
         for i in range(len(nums)):
             
-            if queue and queue[0][1] <= i-k :   #remove front element if it goes out of size
+            if queue and queue[0][1] <= i-k :   #i-k means out of bound #remove front element if it goes out of size
                 queue.popleft()
                 
             while queue and queue[-1][0] < nums[i]:  #maintain the elements in descending order
@@ -19,7 +19,7 @@ class Solution:
                 
             queue.append((nums[i] , i))  #push currentNode
             
-            if i >= k-1 :                  #include maximum in teh current window
+            if i >= k-1 :                 #k-1 is beacuse the window should contain atleast 3 elements if k = 3 #include maximum in teh current window
                 result.append(queue[0][0])    
                 
         return result 
