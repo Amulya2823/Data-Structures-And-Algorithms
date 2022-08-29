@@ -9,22 +9,31 @@ class Solution:
         for currentCity in range(n):
             
             if visited[currentCity] ==  False:
-                self.depthFirstSearch(graph , n , currentCity , visited)
+                self.breadthFirstSearch(graph , n , currentCity , visited)
                 answer += 1
                 
         return answer 
         
-    def depthFirstSearch(self , graph , n , currentCity , visited):
+    def breadthFirstSearch(self , graph , n , currentCity , visited):
         
-        if visited[currentCity] :
-            return 
+        queue = []
+        queue.append(currentCity)
         
-        visited[currentCity] = True
-        neighbours = graph[currentCity]
+        while queue :
+            currentVertex = queue.pop(0)
+            
+            if visited[currentVertex]:
+                continue
+            
+            visited[currentVertex] = True
+            neighbours = graph[currentVertex]
+            
+            for i in range(n):
+                  if neighbours[i] == 1:
+                        queue.append(i)
+
+
+       
         
-        for i in range(n):
-            if neighbours[i] == 1:
-                self.depthFirstSearch(graph , n , i , visited)
-                
-        return 
+        
         
