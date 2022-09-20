@@ -7,23 +7,46 @@
 class Solution:
     def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         
+        stack = []
         answer = []
-        self.inOrder(root , answer)
-        return answer 
+        
+        if root == None :
+            return answer
+        
+        self.addLeftSubtree(root , stack) #make a call to left subtree
+        
+        while stack :     # make a call to node
+            currentNode = stack.pop()
+            answer.append(currentNode.val)
+            
+            if currentNode.right != None : #add all the left elements of the right subtree
+                self.addLeftSubtree(currentNode.right , stack)
+                
+        return answer
     
-    def inOrder(self , root , answer):
+    def addLeftSubtree(self , currentNode , stack):  # left child
+        stack.append(currentNode)
         
-        if root == None:
-            return 
+        while currentNode.left != None :
+            stack.append(currentNode.left)
+            currentNode = currentNode.left
+            
+        return 
+            
+            
+            
+                
+                
+             
         
-        self.inOrder(root.left , answer)
-        answer.append(root.val)
-        self.inOrder(root.right, answer)
-        
-        return answer 
         
         
         
+        
+        
+        
+        
+            
         
         
         
