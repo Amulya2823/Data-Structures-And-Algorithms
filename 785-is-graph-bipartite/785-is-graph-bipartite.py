@@ -4,30 +4,28 @@ class Solution:
         n = len(graph)
         colors = [-1]*n
         
-        for currentVertex in range (n):
+        for currentVertex in range(n):
             
             if colors[currentVertex] != -1 :
                 continue
                 
-            if not (self.hasEvenCycle(graph , currentVertex , 0 , colors)):
+            if not self.hasEvenCycle(graph , currentVertex , 0 , colors):
                 return False
             
-        return True 
+        return True
     
-    def hasEvenCycle(self ,graph , currentVertex , currentColor , colors):
+    def hasEvenCycle(self , graph , currentVertex , currentColor , colors):
         
-        if colors[currentVertex] != -1:
+        if colors[currentVertex] != -1 :
             return colors[currentVertex] == currentColor
         
-        colors[currentVertex] = currentColor
+        colors[currentVertex] = currentColor 
         
-        for currentNeighbour in graph[currentVertex]:
+        for currentNeigh in graph[currentVertex] :
             
-            if not (self.hasEvenCycle(graph , currentNeighbour , 1-currentColor , colors)):
-                return False 
+            if not self.hasEvenCycle( graph , currentNeigh , 1-currentColor , colors):
+                return False
             
         return True
-                
-                
-                
+
         
