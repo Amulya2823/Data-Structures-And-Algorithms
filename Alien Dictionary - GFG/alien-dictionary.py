@@ -27,7 +27,7 @@ class Solution:
                 
         queue = []
         
-        for currentVertex in range (len(inDegree)):
+        for currentVertex in range(K):
             if inDegree[currentVertex] == 0:
                 queue.append(currentVertex)
         
